@@ -1,26 +1,64 @@
-var promise = d3.csv("data/Martial-status-data.csv");
+var promise1 = d3.csv("data/Martial-status-data.csv");
 
-promise.then(
+promise1.then(
 function(data){
 console.log(data)
 })
 
-var promise = d3.csv("data/Parental-presence-data.csv");
+var promise2 = d3.csv("data/Parental-presence-data.csv");
 
-promise.then(
+promise2.then(
 function(data){
 console.log(data)
 })
-var setup = function(array2D)
+
+var promise = d3.json("usa.json");
+
+promise.then(
+function(data){
+    console.log(data)
+    
+ drawstates(data);
+})
+
+var drawstates=function(data){
+    
+    var svg=d3.select("svg")
+    var path=d3.geoPath()
+                .projection(d3.geoAlbersUsa());
+    
+    svg.selectAll("path")
+    .data(data.features)
+    .enter()
+    .append("path")
+    .attr("d", path );
+
+}
+
+
+
+
+
+
+var setup = function(children)
 {
 
-    console.log("selectedshape", selectedShape)
+    
     d3.select("svg")
         .attr("width", screen.width)
         .attr("height", screen.height)
         .append("g")
         .attr("id", "graph")
-        .attr("transform", "translate(" + margins.left + ","+margins.top+")");
+        .attr("transform", "translate(" + margins.left + ","+margins.top+")")
+    
+    d3.select("svg")
+        .append("svg")
+        .attr("usa.json")
+        
+        .data(json.features)
+        .enter()
+        .append("path")
+        .attr("data" , path);
     
     var width= screen.width - margins.left-margins.right;
     var height = screen.height - margins.top - margins.bottom;
@@ -52,6 +90,31 @@ var setup = function(array2D)
         .attr("id", "yAxis")
         .attr("transform", "translate(25," + margins.top + ")")
         .call(yAxis)
+}
+var createGraph = function(children, xScale, yScale, cScale, index)
+    {
+        
+      
+    var array = d3.select("#graph")
+            .selectAll("circle")
+            .data(children[index])
+            .transition()
+            .attr("fill", function(){
+                return cScale(children[index].quizes.grade)
+            })
+            .attr("cx", function(num,index)
+                  {
+                return xScale(index);
+            })
+            .attr("cy",function(num)
+                  {
+                return yScale(num.grade);
+            })
+            .attr("r", 3)
+
+    }
+
+    
 
 
 
