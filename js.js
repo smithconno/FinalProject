@@ -2,7 +2,7 @@
 
 
 
-var promise1 = d3.csv("data/Martial-status-data.csv");
+var promise1 = d3.csv("data/combined.csv");
 
 /*promise1.then(
 function(data){
@@ -20,13 +20,41 @@ console.log(data)
 var promise = d3.json("usa.json");
 
 Promise.all([promise1, promise])
-promise.then(
+.then(
 function(data){
     console.log(data)
-    
+    console.log(data[1].features,data[0])
+    var hash = combine(data[1].features,data[0]);
+    drawstates(hash);
+}
   // setup(data) 
- drawstates(data);
-})
+ //drawstates(data);
+)
+var combine = function(dataA, dataB) {
+    var hash = [];
+   
+    dataA.forEach(function(d,i)
+    { var id = parseInt(d.properties.STATE)
+    hash[i]={
+        info: dataB[id],
+        features: d
+    }
+    });
+    
+    
+    
+    console.log(hash);
+    return hash;
+   
+    /*dataB.forEach(function(e2)
+    {
+        hash[d.NAME].data=e2;
+    })*/
+    
+
+
+}
+    
 
 
 
@@ -39,22 +67,47 @@ var drawstates=function(data){
                     .translate([screen.width/2, screen.height/2])
                     .scale([1000])
                    
-   
+   var feat =[];
+    data.forEach(function(d){
+        feat.push(d.features);
+    })
    
     var path=d3.geoPath(projection)
                .projection(d3.geoAlbersUsa());
     var svg=d3.select("svg")
     .attr("width", screen.width)
-    .attr("height", screen.height)
+    .attr("height", screen.height);
 
     svg.selectAll("path")
-    .data(data.features)
+    .data(feat)
     .enter()
     .append("path")
     .attr("d", path );
   
 
 }
+
+var incomecolor = d3.scalesequential(d3.interpolateBlues)
+.domain([0,d3.max(data,function(d)
+                {
+                    
+                    var value = d.data
+                    
+                    
+                    if(value){
+                        return value.Income
+                    }
+
+                    else{
+                        
+                        return 0
+                    }
+}
+                 
+                 
+                 
+                 
+                 )])
 
 
 
