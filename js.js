@@ -31,26 +31,25 @@ function(data){
  //drawstates(data);
 )
 var combine = function(dataA, dataB) {
-    var hash = [];
+    var hash = {};
    
     dataA.forEach(function(d,i)
-    { var id = parseInt(d.properties.STATE)
-    hash[i]={
-        info: dataB[id],
-        features: d
-    }
+    { var id = (d.properties.NAME)
+    console.log(id,d)
+    hash[id]= d;
     });
     
     
     
-    console.log(hash);
-    return hash;
-   
-    /*dataB.forEach(function(e2)
-    {
-        hash[d.NAME].data=e2;
-    })*/
-    
+//    console.log(hash);
+     dataB.forEach(function(e2)
+    {  
+         console.log(e2)
+         if( hash[e2.State])
+        { hash[e2.State].info=e2;}
+    })
+    console.log(dataA)
+    return dataA;
 }
     
 
@@ -77,15 +76,15 @@ var drawstates=function(data){
     .attr("height", screen.height);
 
     svg.selectAll("path")
-    .data(feat)
+    .data(data)
     .enter()
     .append("path")
     .attr("d", path )
     .on("mouseover", function(state)
-        {console.log("works", state.properties.NAME, state.info.Married)})
+        {console.log("works", state.properties.NAME, state.info.Lowincome1, state.info.Abovelowincome1, state.info.Lowincome2, state.info.Abovelowincome2, state.info.Lowincome3, state.info.Abovelowincome3, state.info.Lowincome4, state.info.Abovelowincome4)})
     
     
-}
+    }
     
     
     
