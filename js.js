@@ -51,8 +51,6 @@ var combine = function(dataA, dataB) {
         hash[d.NAME].data=e2;
     })*/
     
-
-
 }
     
 
@@ -87,30 +85,51 @@ var drawstates=function(data){
 
 }
 
-var incomecolor = d3.scalesequential(d3.interpolateBlues)
-.domain([0,d3.max(data,function(d)
-                {
-                    
-                    var value = d.data
-                    
-                    
-                    if(value){
-                        return value.Income
-                    }
+.on("mouseover", function(d)
+ {
+    console.log("Lowincome1")
+     
+{
+    console.log("Lowincome1")
+     d3.selectAll("path")
+    svg.append("text")
+    .attr("id","tooltip")
+     .attr("x", 650)
+     .attr("y", 20)
+     .attr("font-size", "25px")
+     .attr("fill","black")
+.text(d.properties.NAME)
+    
+    svg.append("text")
+    .attr("id", "tooltip")
+    .attr("x", 650)
+    .attr("y", 50)
+    .attr("font-size", "11px")
+    .text("Crime Per 100,000 People:  " +  d.data.Lowincome1)
+    
+    svg.append("text")
+    .attr("id", "tooltip")
+    .attr("x", 650)
+    .attr("y", 80)
+    .attr("font-size", "11px")
+    .text("Median Household Income:  " + "$" + d.data.Lowincome1) 
+    
 
-                    else{
-                        
-                        return 0
-                    }
+ }
+
+
+
 }
-                 
-                 
-                 
-                 
-                 )])
+.on("mouseout", function() {
+    d3.selectAll("#tooltip").remove()
+})) 
+          
+       
+     
 
 
 
+       
 
 
 

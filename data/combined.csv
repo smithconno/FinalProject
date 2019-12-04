@@ -1,5 +1,5 @@
-,Married,,,Unmarried,,,At Least One Parent in Home,,,No Parent in Home,
-NAME,Low-income,Above Low-income,,Low-income,Above Low-income,,Low Income,Above Low Income,,Low income ,Above Low Income 
+,Married,,,Unmarried,,,AtLeastOneParentinHome,,,NoParentinHome,
+NAME,Low-income,Above Low-income,,Low-income,AboveLow-income,,LowIncome,AboveLowIncome,,Lowincome,AboveLowIncome 
 National,28%,72%,,64%,36%,,39%,61%,,61%,39%
 Alabama,32%,68%,,75%,25%,,48%,52%,,53%,47%
 Alaska,24%,76%,,54%,46%,,34%,66%,,30%,70%
