@@ -80,12 +80,16 @@ var drawstates=function(data){
     .data(feat)
     .enter()
     .append("path")
-    .attr("d", path );
-  
-
+    .attr("d", path )
+    .on("mouseover", function(state)
+        {console.log("works", state.properties.NAME, state.info.Married)})
+    
+    
 }
-
-.on("mouseover", function(d)
+    
+    
+    
+    /*.on("mouseover", function(d)
  {
     console.log("Lowincome1")
      
@@ -123,7 +127,7 @@ var drawstates=function(data){
 .on("mouseout", function() {
     d3.selectAll("#tooltip").remove()
 })) 
-          
+       */   
        
      
 
