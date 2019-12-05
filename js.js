@@ -35,7 +35,7 @@ var combine = function(dataA, dataB) {
    
     dataA.forEach(function(d,i)
     { var id = (d.properties.NAME)
-    console.log(id,d)
+   // console.log(id,d)
     hash[id]= d;
     });
     
@@ -44,15 +44,15 @@ var combine = function(dataA, dataB) {
 //    console.log(hash);
      dataB.forEach(function(e2)
     {  
-         console.log(e2)
+        // console.log(e2)
          if( hash[e2.State])
         { hash[e2.State].info=e2;}
     })
-    console.log(dataA)
+    //console.log(dataA)
     return dataA;
 }
     
-
+var cscale = d3.scaleOrdinal(d3.schemeTableau10)
 
 
 var drawstates=function(data){
@@ -81,20 +81,57 @@ var drawstates=function(data){
     .append("path")
     .attr("d", path )
     .on("mouseover", function(state)
-        {console.log("works", state.properties.NAME, state.info.Lowincome1, state.info.Abovelowincome1, state.info.Lowincome2, state.info.Abovelowincome2, state.info.Lowincome3, state.info.Abovelowincome3, state.info.Lowincome4, state.info.Abovelowincome4)
+        {
+        //console.log(state.properties.NAME, state.info.Lowincome1, state.info.Abovelowincome1, state.info.Lowincome2, state.info.Abovelowincome2, state.info.Lowincome3, state.info.Abovelowincome3, state.info.Lowincome4, state.info.Abovelowincome4)
+        d3.selectAll("#jerry p")
+        .remove()
+        
+        
+         d3.selectAll("#percent p")
+        .remove()
+        
+        
+        
+    console.log(state) 
+    d3.select("#jerry")
+       // .selectAll("p")
     
-    d3.selectAll("#jerry")
-.selectAll("p")
-    .data(data)
-    .enter()
-.append("p")
-    .text(function(state)
+        .append("p")
+    .text(function(state1)
     {
-//console.log(state) 
-        return console.log(state.properties.NAME)
-          })})
-    
 
+        return state.properties.NAME})
+          
+         d3.select("#percent")
+       // .selectAll("p")
+    
+        .append("p")
+    .text(function(state1)
+    {
+
+        return state.info.Abovelowincome1
+    
+    })   
+          
+                 d3.select("#percent")
+       // .selectAll("p")
+    
+        .append("p")
+    .text(function(state1)
+    {
+
+        return state.info.Lowincome1})  
+        
+    })
+    
+         d3.select("#percent2")
+       // .selectAll("p")
+        
+        .append("p")
+    .text(function(state1)
+    {
+        return state.info.Abovelowincome2
+    })   
 
     
     
