@@ -52,7 +52,9 @@ var combine = function(dataA, dataB) {
     return dataA;
 }
     
-var cscale = d3.scaleOrdinal(d3.schemeTableau10)
+
+   
+    
 
 
 var drawstates=function(data){
@@ -109,7 +111,7 @@ var drawstates=function(data){
     .text(function(state1)
     {
 
-        return state.info.Abovelowincome1
+        return "Married Families Above Low Income=" +  state.info.Abovelowincome3
     
     })   
           
@@ -120,18 +122,29 @@ var drawstates=function(data){
     .text(function(state1)
     {
 
-        return state.info.Lowincome1})  
+       return "Married Families Low Income=" +  state.info.Lowincome3})  
         
-    })
     
-         d3.select("#percent2")
+    
+         d3.select("#percent")
        // .selectAll("p")
         
         .append("p")
     .text(function(state1)
     {
-        return state.info.Abovelowincome2
-    })   
+        return "Unmarried Families Above Low Income=" + state.info.Abovelowincome4
+             
+    })
+    d3.select("#percent")
+       // .selectAll("p")
+        
+        .append("p")
+    .text(function(state1)
+    {
+        return "Unmarried Families Low Income=" + state.info.Lowincome4
+             
+             
+    })})  
 
     
     

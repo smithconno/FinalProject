@@ -1,5 +1,8 @@
 
-
+body
+{
+    background-color: deepskyblue;
+}
 /*path:hover, circle:hover {
   stroke: #002868 !important;
   stroke-width:2px;
@@ -28,4 +31,3 @@
 svg:hover {
   background-color: yellow;
 }
-
