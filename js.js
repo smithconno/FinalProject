@@ -57,7 +57,7 @@ var combine = function(dataA, dataB) {
 
 var drawstates=function(data){
     
-   var screen = {width: 3000, height:3000}
+   var screen = {width: 1000, height:500}
     
    
     var projection = d3.geoAlbersUsa()
@@ -81,10 +81,22 @@ var drawstates=function(data){
     .append("path")
     .attr("d", path )
     .on("mouseover", function(state)
-        {console.log("works", state.properties.NAME, state.info.Lowincome1, state.info.Abovelowincome1, state.info.Lowincome2, state.info.Abovelowincome2, state.info.Lowincome3, state.info.Abovelowincome3, state.info.Lowincome4, state.info.Abovelowincome4)})
+        {console.log("works", state.properties.NAME, state.info.Lowincome1, state.info.Abovelowincome1, state.info.Lowincome2, state.info.Abovelowincome2, state.info.Lowincome3, state.info.Abovelowincome3, state.info.Lowincome4, state.info.Abovelowincome4)
     
+    d3.selectAll("#jerry")
+.selectAll("p")
+    .data(data)
+    .enter()
+.append("p")
+    .text(function(state)
+    {
+//console.log(state) 
+        return console.log(state.properties.NAME)
+          })})
     
-    }
+
+
+    
     
     
     
@@ -247,3 +259,4 @@ var drawstates=function(data){
 
 
 
+}
